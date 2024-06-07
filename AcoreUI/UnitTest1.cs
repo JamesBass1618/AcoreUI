@@ -19,8 +19,7 @@ namespace AcoreUI
 
             // Google search button name
             By googleSearchButton = By.Name("btnK");
-            By googleResultText = By.XPath(".//a//h3[text()='ACORE Capital: Welcome']"); // h3 inside a
-           // By googleIAgreeButton = By.Id("L2AGLb");
+            By googleResultText = By.XPath(".//a//h3[text()='ACORE Capital: Welcome']"); // h3 inside a;
 
             IWebDriver webDriver = new ChromeDriver();
 
@@ -30,24 +29,26 @@ namespace AcoreUI
 
             Thread.Sleep(waitingTime);
 
-            //webDriver.FindElement(googleIAgreeButton).Click();
-
             webDriver.Manage().Window.Maximize();
 
             Thread.Sleep(waitingTime);
 
+            // Input ACORE Capital into the search bar
             webDriver.FindElement(googleSearchBar).SendKeys("ACORE Capital");
 
-            // 
             Thread.Sleep(waitingTime);
 
+            // Click/Enter query or search
             webDriver.FindElement(googleSearchButton).Click();
 
+            // Give time to see
             Thread.Sleep(waitingTime);
 
+            // Compare result to what we are actually seeing
             var actualResultText = webDriver.FindElement(googleResultText);
 
             Assert.IsTrue(actualResultText.Text.Equals("ACORE Capital: Welcome"));
+
 
             webDriver.Quit();
         }
