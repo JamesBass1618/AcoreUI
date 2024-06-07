@@ -14,7 +14,8 @@ namespace AcoreUI
         {
             int waitingTime = 2000;
             // Testing by name in inspect element
-            By googleSearchBar = By.Name("q");
+            // Name is q in HTML
+            By googleSearchBar = By.Name("q"); 
 
             // Google search button name
             By googleSearchButton = By.Name("btnK");
@@ -37,6 +38,7 @@ namespace AcoreUI
 
             webDriver.FindElement(googleSearchBar).SendKeys("ACORE Capital");
 
+            // 
             Thread.Sleep(waitingTime);
 
             webDriver.FindElement(googleSearchButton).Click();
