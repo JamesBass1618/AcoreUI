@@ -13,6 +13,7 @@ namespace AcoreUI
         public void TestSearchStreetFighterVThenVerifyStreetFighterVIsDisplayed()
         {
             int waitingTime = 2000;
+
             // Testing by name in inspect element
             // Name is q in HTML
             By googleSearchBar = By.Name("q"); 
@@ -20,7 +21,7 @@ namespace AcoreUI
             // Google search button name
             By googleSearchButton = By.Name("btnK");
             By googleResultText = By.XPath(".//a//h3[text()='ACORE Capital: Welcome']"); // h3 inside a;
-
+            string backShopAddress = "https://acorebackshop.azurewebsites.net/acore/pages/shared/login.aspx?ReturnUrl=%2fLocator%2fLoanLocator.aspx"
             IWebDriver webDriver = new ChromeDriver();
 
             Thread.Sleep(waitingTime);
@@ -49,8 +50,13 @@ namespace AcoreUI
 
             Assert.IsTrue(actualResultText.Text.Equals("ACORE Capital: Welcome"));
 
+            webDriver.Navigate().GoToUrl("https://www.google.com");
+
+            Thread.Sleep(waitingTime);
 
             webDriver.Quit();
+
+            webDriver.FindElement(googleSearchBar).SendKeys(backShopAddress);
         }
     }
 }
